@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block title %}Adoptions Home{% endblock %} {% block
+content %}
+
+<h1>All Pets</h1>
+<hr />
+<div class="row">
+  {% for pet in pets %}
+  <div class="card col-2 mb-3">
+    {% if pet.photo_url %}
+    <img src="{{pet.photo_url}}" class="card-img-top" alt="pet image" />
+    {% else %}
+    <img
+      src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      class="card-img-top"
+      alt="pet image"
+    />
+    {% endif %}
+    <div class="card-body text-center">
+      <h5 class="card-title">{{pet.name}}</h5>
+      <p class="card-text">
+        {% if pet.available %} This pet is <strong>available</strong>! {% else
+        %} This pet is
+        <span class="text-danger"><strong>not available</strong></span
+        >! {% endif %}
+      </p>
+      <a href="/pet/{{pet.id}}">
+        <button class="btn btn-secondary btn-large">Learn More</button>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="row mt-3">
+  <a href="/add">
+    <button class="btn btn-success btn-large">Add Pet</button>
+  </a>
+</div>
+{% endblock %}
